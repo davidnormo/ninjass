@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
-    "types": ["@types/node"],
-    "lib": ["ESNext", "DOM"]
+    "types": ["@types/node", "@types/jest"],
+    "lib": ["ESNext", "DOM"],
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "target": "ES2021",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true
   }
 }

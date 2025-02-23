@@ -4,14 +4,17 @@
   "description": "",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "test": "vitest",
+    "build": "node build.js && tsc",
     "tsc": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.13.4"
+    "@types/node": "^22.13.4",
+    "jsdom": "^26.0.0"
   }
 }

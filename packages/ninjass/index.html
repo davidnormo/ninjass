@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <script>
+      (() => {
+        var f = !1;
+        globalThis.__styles = {};
+        var m = (e) => e?.startsWith("@media"),
+          r = (e, i, n, t = !1) => {
+            for (let s in i[n]) e.style[s] = t ? i[s] : i[n][s];
+          },
+          o = "addEventListener",
+          a = "getAttribute",
+          d = "setAttribute",
+          y = function (e, i, n) {
+            if (e.styled !== n) {
+              for (let t in i)
+                if (t === ":hover")
+                  e[o]("mouseover", () => {
+                    r(e, i, t);
+                  }),
+                    e[o]("mouseout", () => {
+                      r(e, i, t, !0);
+                    });
+                else if (m(t)) {
+                  let s = t.slice(t.indexOf("(")),
+                    c = window.matchMedia(s);
+                  c[o]("change", (l) => {
+                    l.matches ? r(e, i, t) : r(e, i, t, !0);
+                  }),
+                    c.matches && r(e, i, t);
+                } else e.style[t] = i[t];
+              e.styled = n;
+            }
+          };
+        if (!f) {
+          let e = Element.prototype[d];
+          (Element.prototype[d] = function (n, t) {
+            if (n === "css") {
+              let s = globalThis.__styles[t];
+              delete globalThis.__styles[t], y(this, s, s);
+              return;
+            }
+            e(n, t);
+          }),
+            new MutationObserver((n) => {
+              n.forEach((t) => {
+                t.type === "childList" &&
+                  t.addedNodes.length &&
+                  t.addedNodes.forEach((s) => {
+                    if (s?.hasAttribute?.("css") && !s.styled) {
+                      let c = s[a]("css"),
+                        l = JSON.parse(s[a]("css").replaceAll("`", '"'));
+                      y(s, l, c), s.removeAttribute("css");
+                    }
+                  });
+              });
+            }).observe(document.documentElement, {
+              subtree: !0,
+              childList: !0,
+            });
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div
+      css="{`width`:`100px`,`height`:`100px`,`background`:`red`, `@media(max-width:500px)`:{`background`:`green`}}"
+    ></div>
+  </body>
+</html>
