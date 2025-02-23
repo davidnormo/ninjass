@@ -1,0 +1,16 @@
+{
+  "name": "example-react-spa",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "start": "cp ../../node_modules/ninjass/dist/index.js ./ninjass.js; http-server ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

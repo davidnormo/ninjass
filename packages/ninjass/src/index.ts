@@ -2,6 +2,8 @@ import { writeToStore } from "./id.js";
 import { StyleDef } from "./types.js";
 import { merge } from "./utils.js";
 
+import './client.ts';
+
 class Wrapper {
   o: StyleDef;
   id: number;

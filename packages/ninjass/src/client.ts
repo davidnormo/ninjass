@@ -4,10 +4,6 @@ const isServer = process.env.IS_SERVER === 'true';
 
 const sym = Symbol.for('@ninjass');
 
-// TODO could save a few bytes by using a Symbol rather than __styles
-// and would be safer than a string (global access)
-globalThis[sym] = globalThis[sym] || {};
-
 const isMediaQuery = (x: any): x is `@media (${string})` => x?.startsWith('@media');
 
 const applyStyles = (el, obj, p, revert = false) => {
@@ -64,7 +60,9 @@ const stylesHandler = function (el: StyledElement, obj: StyleDef, attrValue: any
   el.styled = attrValue;
 };
 
-if (!isServer) {
+if (!isServer && !globalThis[sym]) {
+  globalThis[sym] = {};
+
   const setAttr = Element.prototype[setAttribute];
   Element.prototype[setAttribute] = function (name, value) {
     if (name === "css") {
@@ -81,7 +79,6 @@ if (!isServer) {
     // TODO will a for loop save more bytes than forEach?
     records.forEach((record) => {
       if (record.type === "childList" && record.addedNodes.length) {
-        console.log('here!!!')
         record.addedNodes.forEach((node: StyledElement) => {
           if (node?.hasAttribute?.("css") && !node.styled) {
             const attr = node[getAttribute]("css");

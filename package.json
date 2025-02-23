@@ -2,6 +2,7 @@
   "name": "ninjass-workspace",
   "type": "module",
   "workspaces": [
+    "./examples/*",
     "./packages/*"
   ],
   "scripts": {
