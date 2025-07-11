@@ -18,7 +18,10 @@
     "changesetVersion": "changeset version",
     "changesetPublish": "changeset publish"
   },
-  "repository": "github:davidnormo/ninjass",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidnormo/ninjass.git"
+  },
   "keywords": [],
   "author": "Dave Normington",
   "license": "MIT",
