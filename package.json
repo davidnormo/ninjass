@@ -1,6 +1,6 @@
 {
   "name": "ninjass",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "type": "module",
   "main": "./dist/index.js",
@@ -14,15 +14,16 @@
     "build": "rm -r dist; node build.js && tsc -p tsconfig.build.json",
     "tsc": "tsc --noEmit",
     "prepack": "npm run build",
-    "addChange": "npx @changesets/cli",
-    "prepareRelease": "npx @changesets/cli version",
-    "publishPackage": "npx @changesets/cli publish"
+    "changeset": "changeset",
+    "changesetVersion": "changeset version",
+    "changesetPublish": "changeset publish"
   },
   "repository": "github:davidnormo/ninjass",
   "keywords": [],
   "author": "Dave Normington",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.29.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.13.4",
     "esbuild": "^0.25.6",

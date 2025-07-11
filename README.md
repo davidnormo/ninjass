@@ -1,4 +1,6 @@
-# ninjass (Inline JS CSS)
+# ninjass 🥷
+
+_meaning: inline css-in-js_
 
 A tiny, no compile, high performance, css-in-js library that uses inline styles.
 
