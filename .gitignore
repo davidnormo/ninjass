@@ -1,3 +1,5 @@
-node_modules
-packages/*/dist
 .DS_Store
+node_modules
+dist
+examples/react-spa/ninjass.js
+examples/simple/client.js

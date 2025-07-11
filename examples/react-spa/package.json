@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": "true",
   "scripts": {
-    "start": "cp ../../node_modules/ninjass/dist/index.js ./ninjass.js; http-server ."
+    "start": "cp ../../dist/index.js ./ninjass.js; http-server ."
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "cp ../../dist/client.js ./; http-server ."
+  }
+}

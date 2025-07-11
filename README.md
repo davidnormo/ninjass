@@ -2,17 +2,9 @@
 
 A tiny, no compile, high performance, css-in-js library that uses inline styles.
 
-## To consider
-
-- ~~Which attribute name to use? `styles` is too close to `style` which may cause confusion~~
-- ~~Is there a way to avoid serialising then deserialising?~~
-- What API should be exposed? i.e. meta library or not
-  - ~~APIs to define in or out component styles would be nice~~ (just use native `style` in this case)
-  - ~~Also being about to compose these together~~
-- Typescript
-- Can it be optimised so same styles aren't applied? Even at React level?
-
-## To explore
+```sh
+npm i --save ninjass
+```
 
 - Server Side Rendering ✅
   - Client side ✅

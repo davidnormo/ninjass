@@ -1,10 +1,12 @@
 <html>
   <head>
-    <script>(()=>{var m=!1,l=Symbol.for("@ninjass");globalThis[l]=globalThis[l]||{};var u=e=>e?.startsWith("@media"),o=(e,i,n,t=!1)=>{for(let s in i[n]){let r=t?i[s]:i[n][s];typeof r!="string"&&(r=""),e.style[s]=r}},a="addEventListener",d="getAttribute",f="setAttribute",y=function(e,i,n){if(e.styled!==n){for(let t in i)if(t===":hover")e[a]("mouseover",()=>{o(e,i,t)}),e[a]("mouseout",()=>{o(e,i,t,!0)});else if(u(t)){let s=t.slice(t.indexOf("(")),r=window.matchMedia(s);r[a]("change",c=>{c.matches?o(e,i,t):o(e,i,t,!0)}),r.matches&&o(e,i,t)}else e.style[t]=i[t];e.styled=n}};if(!m){let e=Element.prototype[f];Element.prototype[f]=function(n,t){if(n==="css"){let s=globalThis[l][t];delete globalThis[l][t],y(this,s,s);return}e(n,t)},new MutationObserver(n=>{n.forEach(t=>{t.type==="childList"&&t.addedNodes.length&&(console.log("here!!!"),t.addedNodes.forEach(s=>{if(s?.hasAttribute?.("css")&&!s.styled){let r=s[d]("css"),c=JSON.parse(s[d]("css").replaceAll("`",'"'));y(s,c,r),s.removeAttribute("css")}}))})}).observe(document.documentElement,{subtree:!0,childList:!0})}})();</script>
+    <script src="./client.js"></script>
   </head>
   <body>
     <div
       css="{`width`:`100px`,`height`:`100px`,`background`:`green`,`margin`:`200px auto`,`color`:`white`}"
-    >This should be green and centred</div>
+    >
+      This should be green and centred
+    </div>
   </body>
 </html>
