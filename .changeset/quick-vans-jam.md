@@ -1,5 +1,0 @@
----
-"ninjass": minor
----
-
-Initial release
