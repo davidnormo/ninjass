@@ -13,11 +13,15 @@
     "test": "vitest",
     "build": "rm -r dist; node build.js && tsc -p tsconfig.build.json",
     "tsc": "tsc --noEmit",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "addChange": "npx @changesets/cli",
+    "prepareRelease": "npx @changesets/cli version",
+    "publishPackage": "npx @changesets/cli publish"
   },
+  "repository": "github:davidnormo/ninjass",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dave Normington",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^22.13.4",
