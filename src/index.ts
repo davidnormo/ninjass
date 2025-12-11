@@ -2,7 +2,7 @@ import { writeToStore } from "./id.js";
 import { StyleDef } from "./types.js";
 import { merge } from "./utils.js";
 
-import './client.ts';
+import "./client.ts";
 
 class Wrapper {
   o: StyleDef;
@@ -13,7 +13,7 @@ class Wrapper {
     this.id = writeToStore(this.o);
   }
   valueOf() {
-    if (process.env.IS_SERVER === 'false') {
+    if (typeof self !== "undefined") {
       return this.id;
     } else {
       return JSON.stringify(this.o).replaceAll('"', "`");
@@ -22,7 +22,7 @@ class Wrapper {
 }
 
 export const createStyle = (
-  def: StyleDef, 
+  def: StyleDef,
   ...defs: Array<StyleDef>
 ): Wrapper => {
   return new Wrapper(merge(def, ...defs));

@@ -1,31 +1,36 @@
 import { StyleDef, StyledElement } from "./types.js";
 
-const isServer = process.env.IS_SERVER === 'true';
+const isServer = typeof self === "undefined";
 
-const sym = Symbol.for('@ninjass');
+const sym = Symbol.for("@ninjass");
 
-const isMediaQuery = (x: any): x is `@media (${string})` => x?.startsWith('@media');
+const isMediaQuery = (x: any): x is `@media (${string})` =>
+  x?.startsWith("@media");
 
 const applyStyles = (el, obj, p, revert = false) => {
   for (let p2 in obj[p]) {
     let val = revert ? obj[p2] : obj[p][p2];
-    if (typeof val !== 'string') val = '';
+    if (typeof val !== "string") val = "";
     el.style[p2] = val;
   }
-}
+};
 
 // Saving a few bytes by holding a function name as a string
-// so the variable name can be minified. This helps if the fn is 
+// so the variable name can be minified. This helps if the fn is
 // used more than once.
-const addEventListener = 'addEventListener';
-const getAttribute = 'getAttribute';
-const setAttribute = 'setAttribute';
+const addEventListener = "addEventListener";
+const getAttribute = "getAttribute";
+const setAttribute = "setAttribute";
 
 /**
  * Internal API
  */
 
-const stylesHandler = function (el: StyledElement, obj: StyleDef, attrValue: any) {
+const stylesHandler = function (
+  el: StyledElement,
+  obj: StyleDef,
+  attrValue: any
+) {
   if (el.styled === attrValue) {
     return;
   }
@@ -35,23 +40,23 @@ const stylesHandler = function (el: StyledElement, obj: StyleDef, attrValue: any
     // 2. TODO for non-basic styles, defer until js bundle has loaded...
     if (p === ":hover") {
       el[addEventListener]("mouseover", () => {
-        applyStyles(el, obj, p)
+        applyStyles(el, obj, p);
       });
       el[addEventListener]("mouseout", () => {
-        applyStyles(el, obj, p, true)
+        applyStyles(el, obj, p, true);
       });
     } else if (isMediaQuery(p)) {
-      const query = p.slice(p.indexOf('('));
+      const query = p.slice(p.indexOf("("));
       const mql = window.matchMedia(query);
       mql[addEventListener]("change", (e) => {
         if (e.matches) {
-          applyStyles(el, obj, p)
+          applyStyles(el, obj, p);
         } else {
-          applyStyles(el, obj, p, true)
+          applyStyles(el, obj, p, true);
         }
       });
       if (mql.matches) {
-        applyStyles(el, obj, p)
+        applyStyles(el, obj, p);
       }
     } else {
       el.style[p] = obj[p];
