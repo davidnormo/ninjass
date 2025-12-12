@@ -1,34 +1,31 @@
-import { writeToStore } from "./id.js";
+import { sym, writeToStore } from "./id.js";
 import { StyleDef } from "./types.js";
 import { merge } from "./utils.js";
 
 import "./client.ts";
 
-class Wrapper {
-  o: StyleDef;
-  id: number;
-
-  constructor(o) {
-    this.o = o;
-    this.id = writeToStore(this.o);
+export const createStyle = (def: StyleDef) => {
+  if (sym in def) {
+    return def;
   }
-  valueOf() {
-    if (typeof self !== "undefined") {
-      return this.id;
-    } else {
-      return JSON.stringify(this.o).replaceAll('"', "`");
-    }
-  }
-}
 
-export const createStyle = (
-  def: StyleDef,
-  ...defs: Array<StyleDef>
-): Wrapper => {
-  return new Wrapper(merge(def, ...defs));
+  if (typeof self !== "undefined") {
+    const id = writeToStore(def);
+    def[sym] = id;
+    return id;
+  } else {
+    let x = {};
+    Object.getOwnPropertyNames(def).forEach((n) => {
+      if (["id", "valueOf"].includes(n)) return;
+      x[n] = def[n];
+    });
+    return JSON.stringify(x).replaceAll('"', "`");
+  }
 };
 
-export const mergeStyles = (base: Wrapper, ...overrides: Wrapper[]) => {
-  const x = merge(base.o, ...overrides.map((x) => x?.o));
-  return new Wrapper(x);
+export const mergeStyles = (
+  base: StyleDef,
+  ...overrides: StyleDef[]
+): StyleDef => {
+  return merge(base, ...overrides);
 };

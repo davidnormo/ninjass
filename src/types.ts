@@ -1,6 +1,7 @@
 export type StyledElement = HTMLElement & { styled?: any };
 
 export type StyleDef = {
+  [sym: symbol]: number;
   [k: string]: unknown;
 } & {
   ":hover"?: {
@@ -9,4 +10,4 @@ export type StyleDef = {
   [mediaQuery: `@media (${string})`]: {
     [k: string]: string;
   };
-}
+};

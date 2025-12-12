@@ -11,7 +11,7 @@ export default function ninjassVitePlugin() {
     name: "ninjass",
     transform(sourceCode, id) {
       if (id.slice(-4) !== ".tsx") return;
-      const match = sourceCode.match(/ css: ?\{/m);
+      const match = sourceCode.match(/ css(,|:| )/m);
       if (!match) return null;
 
       const ast = parseSync(sourceCode);

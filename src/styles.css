@@ -1,0 +1,137 @@
+:root {
+  --font-family: Arial, Helvetica, sans-serif;
+  --font-size: 13px;
+  --mar: 4px;
+  --pad: 8px;
+
+  color-scheme: light dark;
+
+  /* M3 baseline colors - light */
+  --p-l-primary: #6750A4;
+  --p-l-on-primary: #fff;
+  --p-l-primary-container: #EADDFF;
+  --p-l-on-primary-container: #4F378B;
+  --p-l-secondary: #625B71;
+  --p-l-on-secondary: #fff;
+  --p-l-secondary-container: #E8DEF8;
+  --p-l-on-secondary-container: #4A4458;
+  --p-l-tertiary: #7D5260;
+  --p-l-on-tertiary: #fff;
+  --p-l-tertiary-container: #FFD8E4;
+  --p-l-on-tertiary-container: #633B48;
+  --p-l-error: #B3261E;
+  --p-l-on-error: #fff;
+  --p-l-error-container: #F9DEDC;
+  --p-l-on-error-container: #8C1D18;
+  --p-l-surface: #FEF7FF;
+  --p-l-on-surface: #1D1B20;
+  --p-l-surface-variant: #E7E0EC;
+  --p-l-on-surface-variant: #49454F;
+  --p-l-surface-container-highest: #E6E0E9;
+  --p-l-surface-container-high: #ECE6F0;
+  --p-l-surface-container: #F3EDF7;
+  --p-l-surface-container-low: #F7F2FA;
+  --p-l-surface-container-lowest: #fff;
+  --p-l-inverse-surface: #322F35;
+  --p-l-inverse-on-surface: #F5EFF7;
+  --p-l-outline: #79747E;
+  --p-l-outline-variant: #CAC4D0;
+
+  /* M3 baseline colors - dark */
+  --p-d-primary: #D0BCFF;
+  --p-d-on-primary: #381E72;
+  --p-d-primary-container: #4F378B;
+  --p-d-on-primary-container: #EADDFF;
+  --p-d-secondary: #CCC2DC;
+  --p-d-on-secondary: #332D41;
+  --p-d-secondary-container: #4A4458;
+  --p-d-on-secondary-container: #E8DEF8;
+  --p-d-tertiary: #EFB8C8;
+  --p-d-on-tertiary: #492532;
+  --p-d-tertiary-container: #633B48;
+  --p-d-on-tertiary-container: #FFD8E4;
+  --p-d-error: #F2B8B5;
+  --p-d-on-error: #601410;
+  --p-d-error-container: #8C1D18;
+  --p-d-on-error-container: #F9DEDC;
+  --p-d-surface: #141218;
+  --p-d-on-surface: #E6E0E9;
+  --p-d-surface-variant: #49454F;
+  --p-d-on-surface-variant: #CAC4D0;
+  --p-d-surface-container-highest: #36343B;
+  --p-d-surface-container-high: #2B2930;
+  --p-d-surface-container: #211F26;
+  --p-d-surface-container-low: #1D1B20;
+  --p-d-surface-container-lowest: #0F0D13;
+  --p-d-inverse-surface: #E6E0E9;
+  --p-d-inverse-on-surface: #322F35;
+  --p-d-outline: #938F99;
+  --p-d-outline-variant: #49454F;
+
+  --p-primary: light-dark(var(--p-l-primary), var(--p-d-primary));
+  --p-on-primary: light-dark(var(--p-l-on-primary), var(--p-d-on-primary));
+  --p-primary-container: light-dark(var(--p-l-primary-container), var(--p-d-primary-container));
+  --p-on-primary-container: light-dark(var(--p-l-on-primary-container), var(--p-d-on-primary-container));
+  --p-secondary: light-dark(var(--p-l-secondary), var(--p-d-secondary));
+  --p-on-secondary: light-dark(var(--p-l-on-secondary), var(--p-d-on-secondary));
+  --p-secondary-container: light-dark(var(--p-l-secondary-container), var(--p-d-secondary-container));
+  --p-on-secondary-container: light-dark(var(--p-l-on-secondary-container), var(--p-d-on-secondary-container));
+  --p-tertiary: light-dark(var(--p-l-tertiary), var(--p-d-tertiary));
+  --p-on-tertiary: light-dark(var(--p-l-on-tertiary), var(--p-d-on-tertiary));
+  --p-tertiary-container: light-dark(var(--p-l-tertiary-container), var(--p-d-tertiary-container));
+  --p-on-tertiary-container: light-dark(var(--p-l-on-tertiary-container), var(--p-d-on-tertiary-container));
+  --p-error: light-dark(var(--p-l-error), var(--p-d-error));
+  --p-on-error: light-dark(var(--p-l-on-error), var(--p-d-on-error));
+  --p-error-container: light-dark(var(--p-l-error-container), var(--p-d-error-container));
+  --p-on-error-container: light-dark(var(--p-l-on-error-container), var(--p-d-on-error-container));
+  --p-surface: light-dark(var(--p-l-surface), var(--p-d-surface));
+  --p-on-surface: light-dark(var(--p-l-on-surface), var(--p-d-on-surface));
+  --p-surface-variant: light-dark(var(--p-l-surface-variant), var(--p-d-surface-variant));
+  --p-on-surface-variant: light-dark(var(--p-l-on-surface-variant), var(--p-d-on-surface-variant));
+  --p-surface-container-highest: light-dark(var(--p-l-surface-container-highest), var(--p-d-surface-container-highest));
+  --p-surface-container-high: light-dark(var(--p-l-surface-container-high), var(--p-d-surface-container-high));
+  --p-surface-container: light-dark(var(--p-l-surface-container), var(--p-d-surface-container));
+  --p-surface-container-low: light-dark(var(--p-l-surface-container-low), var(--p-d-surface-container-low));
+  --p-surface-container-lowest: light-dark(var(--p-l-surface-container-lowest), var(--p-d-surface-container-lowest));
+  --p-inverse-surface: light-dark(var(--p-l-inverse-surface), var(--p-d-inverse-surface));
+  --p-inverse-on-surface: light-dark(var(--p-l-inverse-on-surface), var(--p-d-inverse-on-surface));
+  --p-outline: light-dark(var(--p-l-outline), var(--p-d-outline));
+  --p-outline-variant: light-dark(var(--p-l-outline-variant), var(--p-d-outline-variant));
+
+  font-size: var(--font-size);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+body {
+  margin: 0;
+  padding: var(--pad);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+
+  background: var(--p-surface);
+  color: var(--p-on-surface);
+}
+
+/* 
+Probably don't want to style the button element.
+Instead I should move these styles to a Button component.
+*/
+button {
+  font-size: 1rem;
+  padding: var(--pad);
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid var(--p-outline-variant);
+  border-radius: var(--pad);
+  background: var(--p-surface-variant);
+  color: var(--p-on-surface-variant);
+
+  &:active, &:focus {
+    filter: brightness(90%);
+  }
+}

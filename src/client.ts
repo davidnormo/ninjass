@@ -7,10 +7,36 @@ const sym = Symbol.for("@ninjass");
 const isMediaQuery = (x: any): x is `@media (${string})` =>
   x?.startsWith("@media");
 
+const isColorProperty = (p: string) =>
+  [
+    "color",
+    "border",
+    "border-color",
+    "background",
+    "background-color",
+    "fill",
+    "outline",
+    "outline-color",
+    "text-shadow",
+  ].includes(p);
+
+const replacePalette = (val: string): string => {
+  if (/(^| )p-/.test(val)) {
+    return val.replace(/(^| )p-([a-z-]+)/, "var(--p-$2)");
+  }
+
+  return val;
+};
+
 const applyStyles = (el, obj, p, revert = false) => {
   for (let p2 in obj[p]) {
     let val = revert ? obj[p2] : obj[p][p2];
     if (typeof val !== "string") val = "";
+
+    if (isColorProperty(p2)) {
+      val = replacePalette(val);
+    }
+
     el.style[p2] = val;
   }
 };
@@ -59,7 +85,9 @@ const stylesHandler = function (
         applyStyles(el, obj, p);
       }
     } else {
-      el.style[p] = obj[p];
+      el.style[p] = isColorProperty(p)
+        ? replacePalette(obj[p] as string)
+        : obj[p];
     }
   }
   el.styled = attrValue;
@@ -71,14 +99,14 @@ if (!isServer && !globalThis[sym]) {
   const setAttr = Element.prototype[setAttribute];
   Element.prototype[setAttribute] = function (name, value) {
     if (name === "css") {
-      const id = (value as unknown as { id: string }).id;
+      let id = (value as unknown as { id: string }).id ?? value.valueOf();
       const obj = globalThis[sym][id];
       delete globalThis[sym][id];
       stylesHandler(this, obj, obj);
       return;
     }
 
-    setAttr(name, value);
+    return setAttr.call(this, name, value);
   };
 
   const mo = new MutationObserver((records) => {

@@ -1,4 +1,5 @@
 import esbuild from "esbuild";
+import { readFile } from "fs/promises";
 
 await Promise.all([
   /**
@@ -21,6 +22,34 @@ await Promise.all([
     outfile: "./dist/client.js",
     minify: true,
     bundle: true,
+  }),
+  /**
+   * Builds styles.css file
+   */
+  esbuild.build({
+    entryPoints: ["./src/styles.css"],
+    platform: "browser",
+    outfile: "./dist/styles.css",
+    minify: true,
+    bundle: true,
+    plugins: [
+      // Leaving this here in case we want something in future
+      // {
+      //   name: "ninjass-css-helpers",
+      //   setup(build) {
+      //     build.onLoad({ filter: /.css$/ }, async (args) => {
+      //       let text = await readFile(args.path, "utf8");
+      //       return {
+      //         contents: text.replaceAll(
+      //           / lightDark\((.+)\)/g,
+      //           " light-dark(var(--p-l-$1), var(--p-d-$1))"
+      //         ),
+      //         loader: "css",
+      //       };
+      //     });
+      //   },
+      // },
+    ],
   }),
   /**
    * Builds the vite plugin
