@@ -71,8 +71,9 @@ if (!isServer && !globalThis[sym]) {
   const setAttr = Element.prototype[setAttribute];
   Element.prototype[setAttribute] = function (name, value) {
     if (name === "css") {
-      const obj = globalThis[sym][value];
-      delete globalThis[sym][value];
+      const id = (value as unknown as { id: string }).id;
+      const obj = globalThis[sym][id];
+      delete globalThis[sym][id];
       stylesHandler(this, obj, obj);
       return;
     }

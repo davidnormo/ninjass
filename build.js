@@ -10,9 +10,6 @@ await Promise.all([
     platform: "neutral",
     outfile: "./dist/index.js",
     bundle: true,
-    define: {
-      "process.env.IS_SERVER": "'false'",
-    },
   }),
   /**
    * Builds the minified code required at the document head
@@ -24,8 +21,13 @@ await Promise.all([
     outfile: "./dist/client.js",
     minify: true,
     bundle: true,
-    define: {
-      "process.env.IS_SERVER": "'false'",
-    },
+  }),
+  /**
+   * Builds the vite plugin
+   */
+  esbuild.build({
+    entryPoints: ["./src/vitePlugin.ts"],
+    platform: "node",
+    outfile: "./dist/vitePlugin.js",
   }),
 ]);
