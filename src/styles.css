@@ -109,7 +109,7 @@
 
 body {
   margin: 0;
-  padding: var(--pad);
+  padding: 0;
   font-family: var(--font-family);
   font-size: var(--font-size);
 
